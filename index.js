@@ -254,12 +254,14 @@ const toggleShowSettingsModal = (value) => {
 
 const finishGame = () => {
   const winner =
-    players.P1.points > players.P2.points ? players.P1.name : players.P2.name;
+    players.P1.points > players.P2.points ? players.P1.name : players.P2.points > players.P1.points ? players.P2.name : "" ;
+  const winnerText = document.createElement("div");
   const gamestatsElement = document.createElement("div");
 
-  gamestatsElement.innerHTML = `<div class="text-3xl text-primary flex justify-center mb-10">
-  ${winner} won
-</div>
+  winnerText.innerHTML = `<div class="text-3xl text-primary flex justify-center mb-10">
+    ${!!winner ? `${winner} won`: "No Winner"}
+</div>`
+  gamestatsElement.innerHTML = `
 <div class="flex justify-between mb-7 text-2xl text-white">
   <div class="w-1/2 text-left">${players.P1.name}</div>
   <div class="w-1/2 text-right">${players.P2.name}</div>
@@ -279,6 +281,7 @@ const finishGame = () => {
 <div>boxes</div>
   <div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1">${players.P2.boxes.length}</div>
 </div>`;
+  finishModal.appendChild(winnerText);
   finishModal.appendChild(gamestatsElement);
   toggleShowFinishModal(true);
 };
