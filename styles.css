@@ -1,0 +1,105 @@
+:root{
+    --primary: #fbbf24;
+    --primaryLight: #fde68a;
+    --secondary: #374151;
+    --secondaryLight: #9ca3af;
+    --darkGray: #111827;
+    --lightGray: #e5e7eb;
+}
+
+
+.container-fluid{
+    display: flex;
+    justify-content: center;
+}
+
+.grid-template-game{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--darkGray);
+    border-radius: 100%;
+}
+
+.h-container {
+    display: flex;
+    align-items: center;
+}
+
+.v-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2px;
+}
+
+.line{
+    background-color: var(--lightGray);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.h-line{
+    width: 100px;
+    height: 7px;
+    margin: 0 5px;
+}
+.v-line{
+    width: 7px;
+    height: 100px;
+    margin: 5px 0px;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin: 2px;
+    margin-top: 5px;
+}
+
+
+.game-status {
+    text-align: center;
+    margin-top: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.hover-primary-light:hover {
+    background-color: var(--primaryLight);
+}
+
+.hover-secondary-light:hover {
+    background-color: var(--secondaryLight);
+}
+
+#turn-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.status-primary {
+    background-color: var(--primaryLight);
+}
+.status-secondary {
+    background-color: var(--secondaryLight);
+}
+
+.tools-icon{
+    border-top: 3px solid transparent;
+    cursor: pointer;
+    padding: 0 7px 5px;
+    padding-top: 5px;
+}
+
+.tools-icon:hover{
+    border-top: 3px solid var(--primary);
+    background-color: var(--primaryLight);
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#fbbf24',
+                primaryLight: "#fde68a",
+                secondary: "#374151",
+                secondaryLight: "#9ca3af",
+                darkGray: "#111827",
+                lightGray: "#e5e7eb",
+                green: '#22c55e'
+              }
+            }
+          }
+        }
+      </script>
+    <title>Dot & Boxes Game</title>
+</head>
+<body>
+    <div id="root">
+        <div class="main max-w-[800px] mx-auto mt-5 h-screen flex flex-col items-center justify-center">
+            <!-- scores  -->
+            <div class="w-full flex justify-between items-center">
+                <div>
+                    <span class="p1-name">player 1</span> : <span id="p1-points"></span>
+                </div>
+                <div class="w-28">
+                    <img src="./images/trophy-removebg-preview.png" class="w-full">
+                </div>
+                <div >
+                    <span id="p2-points"></span> : <span class="p2-name">player 2</span>
+                </div>
+            </div>
+            <!-- scores  -->
+            
+            <!-- game grid -->
+            <div class="container-fluid mt-10">
+                <div class="grid-template-game"></div>
+            </div>
+            <!-- game grid  -->
+
+            <!-- game status  -->
+            <div class="game-status">
+                it's <span id="turn-status" class="bg-primary font-bold"></span> turn
+            </div>
+            <!-- game status  -->
+            
+            <!-- game tools  -->
+            <div class="w-full flex justify-between px-2 pt-3 pb-1 text-gray-800">
+                <i class="fas fa-sync-alt tools-icon text-xl" id="reset-btn"></i>
+                <i class="fas fa-cog tools-icon text-xl" id="settings-btn" ></i>
+            </div>
+            <div class="bg-primary h-1.5 w-full rounded-xl"></div>
+            <!-- game tools  -->
+
+            <!-- stats modal  -->
+            <div class="absolute flex justify-center items-center w-full h-screen backdrop-blur-sm bg-orange-400/30 hidden" id="finish-game-back-drop">
+                <div class="bg-secondary rounded-xl p-10 w-full max-w-[650px] flex flex-col" >
+                    <div id="finish-game-modal"></div>
+                    <button class="bg-primary mx-auto px-20 py-2 mt-10 rounded-xl" id="modal-reset-btn">
+                        <span class="text-xl mr-3">Play again</span>
+                         <i class="fas fa-sync-alt text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- stats modal -->
+            
+            <!-- setting modal  -->
+            <div class="absolute flex justify-center items-center w-full h-screen hidden" id="settings-back-drop">
+                <div class="bg-secondary rounded-xl p-10 w-full max-w-[450px] flex flex-col" >
+                    <div class="text-xl text-white text-right flex justify-between">
+                        <div>Settings</div>
+                        
+
+                        <div>
+                            dark
+                        </div>
+                    </div>
+    
+                    <div class="mt-8">
+                        <div class="flex">
+                            <div class="text-white">Player 1 :</div>
+                            <input id="rename-p1" type="text" value="player 1" class="ml-5 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
+                        </div>
+                        <div class="flex mt-3">
+                            <div class="text-white">Player 2 :</div>
+                            <input id="rename-p2" type="text" value="player 2" class="ml-5 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
+                        </div>
+
+                        <div id="error" class="text-rose-500 text-sm italic mt-3 invisible">* Names must be longer than 3 letters</div>
+                    </div>
+    
+                    <div class="flex mt-6">
+                        <div class="text-white">Sides :</div>
+                        <select id="select-sides" class="ml-5 text-primary bg-transparent outline-none cursor-pointer">
+                            <option value="2">2 X 2</option>
+                            <option selected value="3">3 X 3</option>
+                            <option value="4">4 X 4</option>
+                            <option value="5">5 X 5</option>
+                        </select>
+                    </div>
+    
+                    <div class="flex">
+                        <div class="w-1/2 flex justify-center items-center">
+                            <button class="bg-green text-white w-full mx-3 px-5 py-2 mt-10 rounded-xl" id="resume-btn">
+                                <span class="text-lg mr-3">Resume</span>
+                                 <i class="fas fa-play text-xl"></i>
+                            </button>
+                        </div>
+    
+                        <div class="w-1/2 flex justify-center items-center">
+                            <button class="bg-primary w-full mx-3 px-5 py-2 mt-10 rounded-xl" id="modal-reset-btn">
+                                <span class="text-lg mr-3">Play again</span>
+                                 <i class="fas fa-sync-alt text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- setting modal  -->
+        </div>
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+</html>
