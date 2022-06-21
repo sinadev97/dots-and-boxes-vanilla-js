@@ -45,7 +45,6 @@ const p2RenameInput = document.getElementById("rename-p2");
 const bgClasses = { P1: "bg-primary", P2: "bg-secondary" };
 const hoverClasses = { P1: "hover-primary-light", P2: "hover-secondary-light" };
 const statusClasses = { P1: "status-primary", P2: "status-secondary" };
-const initialTurn = "P1";
 
 document.querySelector(".p1-name").innerHTML = players.P1.name;
 document.querySelector(".p2-name").innerHTML = players.P2.name;
@@ -235,7 +234,7 @@ const isBoxSolved = (box) => {
 };
 
 const resetGame = () => {
-  turn = initialTurn;
+  resetStates();
   const lines = useLines();
   lines.forEach((line) => {
     line.classList.remove(bgClasses.P1, bgClasses.P2);
@@ -251,6 +250,16 @@ const resetGame = () => {
   players.P1.boxes = [];
   players.P2.boxes = [];
   updateGameStatus(turn);
+  setLocalStorage();
+};
+
+const resetStates = () => {
+  turn = "P1";
+  states.turn = "P1";
+  selectedLines = [];
+  selectedBoxes = [];
+  players.P1 = { ...players.P1, lines: [], boxes: [], points: 0 };
+  players.P2 = { ...players.P2, lines: [], boxes: [], points: 0 };
 };
 
 const scorring = ({ turn, reset }) => {
