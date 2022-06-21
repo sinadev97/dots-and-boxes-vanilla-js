@@ -103,3 +103,46 @@
     border-top: 3px solid var(--primary);
     background-color: var(--primaryLight);
 }
+
+
+
+/* dark mode switch  */
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 55px;
+	height: 23px;
+	background: var(--primary);
+	display: block;
+	border-radius: 100px;
+	position: relative;
+    color: transparent;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 20px;
+	height: 13px;
+	background: #fff;
+	border-radius: 20px;
+	transition: 0.3s;
+}
+
+input:checked + label {
+	background: var(--darkGray);
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+/* dark mode switch  */
