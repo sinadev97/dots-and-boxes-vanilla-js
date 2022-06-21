@@ -404,3 +404,12 @@ selectSides.addEventListener("change", (e) => {
   createGame(rnc);
   resetGame();
 });
+
+const toggleDarkMode = document.getElementById("switch");
+toggleDarkMode.addEventListener("click", (e) => {
+  if (e.target.checked) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+});

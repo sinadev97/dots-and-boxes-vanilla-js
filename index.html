@@ -12,9 +12,9 @@
           theme: {
             extend: {
               colors: {
-                primary: '#fbbf24',
+                // primary: '#fbbf24',
                 primaryLight: "#fde68a",
-                secondary: "#374151",
+                // secondary: "#374151",
                 secondaryLight: "#9ca3af",
                 darkGray: "#111827",
                 lightGray: "#e5e7eb",
@@ -77,8 +77,8 @@
             
             <!-- setting modal  -->
             <div class="absolute flex justify-center items-center w-full h-screen hidden" id="settings-back-drop">
-                <div class="bg-secondary rounded-xl p-10 w-full max-w-[450px] flex flex-col" >
-                    <div class="text-xl text-white text-right flex justify-between">
+                <div class="setting-card rounded-xl p-10 w-full max-w-[450px] flex flex-col" >
+                    <div class="text-xl  text-right flex justify-between">
                         <div>Settings</div>
                         
 
@@ -93,11 +93,11 @@
     
                     <div class="mt-8">
                         <div class="flex">
-                            <div class="text-white">Player 1 :</div>
+                            <div class="">Player 1 :</div>
                             <input id="rename-p1" type="text" value="" class="ml-5 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
                         </div>
                         <div class="flex mt-3">
-                            <div class="text-white">Player 2 :</div>
+                            <div class="">Player 2 :</div>
                             <input id="rename-p2" type="text" value="" class="ml-5 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
                         </div>
 
@@ -105,7 +105,7 @@
                     </div>
     
                     <div class="flex mt-6">
-                        <div class="text-white">Sides :</div>
+                        <div class="">Sides :</div>
                         <select id="select-sides" class="ml-5 text-primary bg-transparent outline-none cursor-pointer">
                             <option value="2">2 X 2</option>
                             <option selected value="3">3 X 3</option>
@@ -116,7 +116,7 @@
     
                     <div class="flex">
                         <div class="w-1/2 flex justify-center items-center">
-                            <button class="bg-green text-white w-full mx-3 px-5 py-2 mt-10 rounded-xl" id="resume-btn">
+                            <button class="bg-green  w-full mx-3 px-5 py-2 mt-10 rounded-xl" id="resume-btn">
                                 <span class="text-lg mr-3">Resume</span>
                                  <i class="fas fa-play text-xl"></i>
                             </button>

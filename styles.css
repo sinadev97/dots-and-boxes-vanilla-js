@@ -5,6 +5,28 @@
     --secondaryLight: #9ca3af;
     --darkGray: #111827;
     --lightGray: #e5e7eb;
+    --bgColor: #ffffff;
+    --textColor: #000000;
+    --bgCard: #374151;
+    --textCard: #ffffff;
+}
+
+.dark-mode{
+    --primary: #a855f7;
+    --primaryLight: #d8b4fe;
+    --secondary: #14b8a6;
+    --secondaryLight: #99f6e4;
+    --darkGray: #64748b;
+    --lightGray: #e5e7eb;
+    --bgColor: #111827;
+    --textColor: #fff;
+    --bgCard: #e5e7eb;
+    --textCard: #111827;
+}
+
+body{
+    background-color: var(--bgColor);
+    color: var(--textColor);
 }
 
 
@@ -104,6 +126,22 @@
     background-color: var(--primaryLight);
 }
 
+.bg-primary{
+    background-color: var(--primary);
+}
+
+.bg-secondary{
+    background-color: var(--secondary);
+}
+
+.setting-card{
+    background-color: var(--bgCard);
+    color: var(--textCard);
+}
+
+input[type=text]{
+    color: var(--primary);
+}
 
 
 /* dark mode switch  */
