@@ -1,5 +1,3 @@
-// let rnc = 3;
-
 const inititalStates = {
   rnc: 3,
   turn: "P1",
@@ -60,7 +58,7 @@ const useLines = () => {
 const useResetBtn = () => {
   return document.getElementById("reset-btn");
 };
-const useboxes = () => {
+const useBoxes = () => {
   return document.querySelectorAll(".box");
 };
 const useP1Points = () => {
@@ -69,23 +67,6 @@ const useP1Points = () => {
 const useP2Points = () => {
   return document.getElementById("p2-points");
 };
-
-// let turn = initialTurn;
-
-// const players = {
-//   P1: {
-//     name: "player 1",
-//     points: 0,
-//     lines: [],
-//     boxes: [],
-//   },
-//   P2: {
-//     name: "player 2",
-//     points: 0,
-//     lines: [],
-//     boxes: [],
-//   },
-// };
 
 const createCols = (numOfCols, j) => {
   let colsUi = "";
@@ -131,10 +112,18 @@ const createGame = (rnc) => {
   updateGameStatus(turn);
   updateScores();
 
-  const lines = document.querySelectorAll(".line");
+  const lines = useLines();
   lines.forEach((line) => {
     line.classList.add(hoverClasses[turn]);
     line.addEventListener("click", handleClick);
+    players.P1.lines.includes(line.id) && line.classList.add(bgClasses.P1);
+    players.P2.lines.includes(line.id) && line.classList.add(bgClasses.P2);
+  });
+
+  const boxes = useBoxes();
+  boxes.forEach((box) => {
+    players.P1.boxes.includes(box.id) && box.classList.add(bgClasses.P1);
+    players.P2.boxes.includes(box.id) && box.classList.add(bgClasses.P2);
   });
 };
 
@@ -181,7 +170,7 @@ const isBoxFilled = (box) => {
 const changeTurn = () => {
   const nextTurn = turn === "P1" ? "P2" : "P1";
 
-  const lines = document.querySelectorAll(".line");
+  const lines = useLines();
 
   lines.forEach((line) => {
     if (!isLineSelected(line)) {
@@ -190,19 +179,25 @@ const changeTurn = () => {
   });
 
   turn = nextTurn;
+  states.turn = nextTurn;
 
   updateGameStatus(turn);
+  setLocalStorage();
 };
 
 const colorLine = (line) => {
   line.classList.remove(hoverClasses[turn]);
   line.classList.add(bgClasses[turn]);
-  players[turn].lines = [...players[turn].lines, line];
+  players[turn].lines = [...players[turn].lines, line.id];
+  setLocalStorage();
+
+  console.log(players[turn].lines);
 };
 
 const colorBox = (box) => {
   box.classList.add(bgClasses[turn]);
-  players[turn].boxes = [...players[turn].boxes, box];
+  players[turn].boxes = [...players[turn].boxes, box.id];
+  setLocalStorage();
 };
 
 const checkBoxesToSolve = () => {
@@ -246,7 +241,7 @@ const resetGame = () => {
     line.classList.remove(bgClasses.P1, bgClasses.P2);
     line.classList.add(hoverClasses[turn]);
   });
-  const boxes = useboxes();
+  const boxes = useBoxes();
   boxes.forEach((box) => {
     box.classList.remove(bgClasses.P1, bgClasses.P2);
   });
@@ -259,7 +254,7 @@ const resetGame = () => {
 };
 
 const scorring = ({ turn, reset }) => {
-  const boxesLength = useboxes().length;
+  const boxesLength = useBoxes().length;
 
   if (!reset) {
     turn === "P1" ? (players.P1.points += 15) : (players.P2.points += 15);
