@@ -1,6 +1,7 @@
 const inititalStates = {
   rnc: 3,
   turn: "P1",
+  theme: "light",
   selectedLines: [],
   selectedBoxes: [],
   players: {
@@ -25,7 +26,7 @@ if (!localStorage.getItem("states")) {
 
 const states = JSON.parse(localStorage.getItem("states"));
 
-let { rnc, turn, selectedBoxes, selectedLines } = states;
+let { rnc, turn, selectedBoxes, selectedLines, theme } = states;
 const { players } = states;
 
 const setLocalStorage = () => {
@@ -41,6 +42,12 @@ const finishModal = document.getElementById("finish-game-modal");
 const selectSides = document.getElementById("select-sides");
 const p1RenameInput = document.getElementById("rename-p1");
 const p2RenameInput = document.getElementById("rename-p2");
+const toggleDarkMode = document.getElementById("switch");
+const options = [...document.getElementsByTagName("option")];
+
+options.forEach((opt) => {
+  +opt.value === rnc && (opt.selected = true);
+});
 
 const bgClasses = { P1: "bg-primary", P2: "bg-secondary" };
 const hoverClasses = { P1: "hover-primary-light", P2: "hover-secondary-light" };
@@ -50,6 +57,9 @@ document.querySelector(".p1-name").innerHTML = players.P1.name;
 document.querySelector(".p2-name").innerHTML = players.P2.name;
 p1RenameInput.value = players.P1.name;
 p2RenameInput.value = players.P2.name;
+
+toggleDarkMode.checked = states.theme === "dark";
+if (states.theme === "dark") document.body.classList.add("dark-mode");
 
 const useLines = () => {
   return document.querySelectorAll(".line");
@@ -319,24 +329,24 @@ const finishGame = () => {
     ${!!winner ? `${winner} won` : "No Winner"}
 </div>`;
   gamestatsElement.innerHTML = `
-<div class="flex justify-between mb-7 text-2xl text-white">
+<div class="flex justify-between mb-7 text-2xl">
   <div class="w-1/2 text-left">${players.P1.name}</div>
   <div class="w-1/2 text-right">${players.P2.name}</div>
 </div>
-<div class="flex justify-between text-white mt-3 ">
-<div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1 text-primary">${players.P1.points}</div>
+<div class="flex justify-between  mt-3 ">
+<div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1 text-white">${players.P1.points}</div>
 <div>points</div>
-  <div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1 text-primary">${players.P2.points}</div>
+  <div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1 text-white">${players.P2.points}</div>
 </div>
-<div class="flex justify-between text-white mt-3 ">
-<div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1">${players.P1.lines.length}</div>
+<div class="flex justify-between mt-3 ">
+<div class="bg-darkGray px-2.5 py-0.5 rounded-full text-white mx-1">${players.P1.lines.length}</div>
 <div>lines</div>
-  <div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1">${players.P2.lines.length}</div>
+  <div class="bg-darkGray px-2.5 py-0.5 rounded-full text-white mx-1">${players.P2.lines.length}</div>
 </div>
-<div class="flex justify-between text-white mt-3 ">
-<div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1">${players.P1.boxes.length}</div>
+<div class="flex justify-between mt-3 ">
+<div class="bg-darkGray px-2.5 py-0.5 rounded-full text-white mx-1">${players.P1.boxes.length}</div>
 <div>boxes</div>
-  <div class="bg-darkGray px-2.5 py-0.5 rounded-full mx-1">${players.P2.boxes.length}</div>
+  <div class="bg-darkGray px-2.5 py-0.5 rounded-full text-white mx-1">${players.P2.boxes.length}</div>
 </div>`;
   finishModal.appendChild(winnerText);
   finishModal.appendChild(gamestatsElement);
@@ -401,15 +411,20 @@ p2RenameInput.addEventListener("blur", (e) => {
 selectSides.addEventListener("change", (e) => {
   gameContainer.innerHTML = null;
   rnc = +e.target.value;
+  states.rnc = +e.target.value;
   createGame(rnc);
   resetGame();
+  setLocalStorage();
 });
 
-const toggleDarkMode = document.getElementById("switch");
 toggleDarkMode.addEventListener("click", (e) => {
   if (e.target.checked) {
+    states.theme = "dark";
     document.body.classList.add("dark-mode");
+    setLocalStorage();
   } else {
+    states.theme = "light";
     document.body.classList.remove("dark-mode");
+    setLocalStorage();
   }
 });

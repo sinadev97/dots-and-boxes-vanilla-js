@@ -12,10 +12,6 @@
           theme: {
             extend: {
               colors: {
-                // primary: '#fbbf24',
-                primaryLight: "#fde68a",
-                // secondary: "#374151",
-                secondaryLight: "#9ca3af",
                 darkGray: "#111827",
                 lightGray: "#e5e7eb",
                 green: '#22c55e'
@@ -56,7 +52,7 @@
             <!-- game status  -->
             
             <!-- game tools  -->
-            <div class="w-full flex justify-between px-2 pt-3 pb-1 text-gray-800">
+            <div class="w-full flex justify-between px-2 pt-3 pb-1">
                 <i class="fas fa-sync-alt tools-icon text-xl" id="reset-btn"></i>
                 <i class="fas fa-cog tools-icon text-xl" id="settings-btn" ></i>
             </div>
@@ -65,7 +61,7 @@
 
             <!-- stats modal  -->
             <div class="absolute flex justify-center items-center w-full h-screen backdrop-blur-sm bg-orange-400/30 hidden" id="finish-game-back-drop">
-                <div class="bg-secondary rounded-xl p-10 w-full max-w-[650px] flex flex-col" >
+                <div class="card rounded-xl p-10 w-full max-w-[650px] flex flex-col" >
                     <div id="finish-game-modal"></div>
                     <button class="bg-primary mx-auto px-20 py-2 mt-10 rounded-xl" id="modal-reset-btn">
                         <span class="text-xl mr-3">Play again</span>
@@ -77,7 +73,7 @@
             
             <!-- setting modal  -->
             <div class="absolute flex justify-center items-center w-full h-screen hidden" id="settings-back-drop">
-                <div class="setting-card rounded-xl p-10 w-full max-w-[450px] flex flex-col" >
+                <div class="card rounded-xl p-10 w-full max-w-[450px] flex flex-col" >
                     <div class="text-xl  text-right flex justify-between">
                         <div>Settings</div>
                         
@@ -106,9 +102,9 @@
     
                     <div class="flex mt-6">
                         <div class="">Sides :</div>
-                        <select id="select-sides" class="ml-5 text-primary bg-transparent outline-none cursor-pointer">
+                        <select id="select-sides" class="ml-5 select-size-text bg-transparent outline-none cursor-pointer">
                             <option value="2">2 X 2</option>
-                            <option selected value="3">3 X 3</option>
+                            <option value="3">3 X 3</option>
                             <option value="4">4 X 4</option>
                             <option value="5">5 X 5</option>
                         </select>
