@@ -234,8 +234,10 @@ const updateScores = (reset = false) => {
     useP2Points().innerHTML = players.P2.points;
     return;
   }
-  useP1Points().innerHTML = 0;
-  useP2Points().innerHTML = 0;
+  players.P1.points = 0;
+  players.P2.points = 0;
+  useP1Points().innerHTML = players.P1.points;
+  useP2Points().innerHTML = players.P2.points;
 };
 
 const toggleShowFinishModal = (value) => {
@@ -254,13 +256,17 @@ const toggleShowSettingsModal = (value) => {
 
 const finishGame = () => {
   const winner =
-    players.P1.points > players.P2.points ? players.P1.name : players.P2.points > players.P1.points ? players.P2.name : "" ;
+    players.P1.points > players.P2.points
+      ? players.P1.name
+      : players.P2.points > players.P1.points
+      ? players.P2.name
+      : "";
   const winnerText = document.createElement("div");
   const gamestatsElement = document.createElement("div");
 
   winnerText.innerHTML = `<div class="text-3xl text-primary flex justify-center mb-10">
-    ${!!winner ? `${winner} won`: "No Winner"}
-</div>`
+    ${!!winner ? `${winner} won` : "No Winner"}
+</div>`;
   gamestatsElement.innerHTML = `
 <div class="flex justify-between mb-7 text-2xl text-white">
   <div class="w-1/2 text-left">${players.P1.name}</div>
@@ -345,7 +351,7 @@ p2RenameInput.addEventListener("blur", (e) => {
 
 selectSides.addEventListener("change", (e) => {
   gameContainer.innerHTML = null;
-  rnc = +(e.target.value)
-  createGame(rnc)
+  rnc = +e.target.value;
+  createGame(rnc);
   resetGame();
 });
