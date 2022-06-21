@@ -1,13 +1,58 @@
-let rnc = 3;
+// let rnc = 3;
+
+const inititalStates = {
+  rnc: 3,
+  turn: "P1",
+  selectedLines: [],
+  selectedBoxes: [],
+  players: {
+    P1: {
+      name: "player 1",
+      points: 0,
+      lines: [],
+      boxes: [],
+    },
+    P2: {
+      name: "player 2",
+      points: 0,
+      lines: [],
+      boxes: [],
+    },
+  },
+};
+
+if (!localStorage.getItem("states")) {
+  localStorage.setItem("states", JSON.stringify(inititalStates));
+}
+
+const states = JSON.parse(localStorage.getItem("states"));
+
+let { rnc, turn, selectedBoxes, selectedLines } = states;
+const { players } = states;
+
+const setLocalStorage = () => {
+  return localStorage.setItem("states", JSON.stringify(states));
+};
+
+document.querySelector(".p1-name").innerHTML = players.P1.name;
+document.querySelector(".p2-name").innerHTML = players.P2.name;
+
 const root = document.getElementById("root");
 const gameContainer = document.querySelector(".grid-template-game");
 const finishModal = document.getElementById("finish-game-modal");
 const selectSides = document.getElementById("select-sides");
+const p1RenameInput = document.getElementById("rename-p1");
+const p2RenameInput = document.getElementById("rename-p2");
 
 const bgClasses = { P1: "bg-primary", P2: "bg-secondary" };
 const hoverClasses = { P1: "hover-primary-light", P2: "hover-secondary-light" };
 const statusClasses = { P1: "status-primary", P2: "status-secondary" };
 const initialTurn = "P1";
+
+document.querySelector(".p1-name").innerHTML = players.P1.name;
+document.querySelector(".p2-name").innerHTML = players.P2.name;
+p1RenameInput.value = players.P1.name;
+p2RenameInput.value = players.P2.name;
 
 const useLines = () => {
   return document.querySelectorAll(".line");
@@ -25,22 +70,22 @@ const useP2Points = () => {
   return document.getElementById("p2-points");
 };
 
-let turn = initialTurn;
+// let turn = initialTurn;
 
-const players = {
-  P1: {
-    name: "player 1",
-    points: 0,
-    lines: [],
-    boxes: [],
-  },
-  P2: {
-    name: "player 2",
-    points: 0,
-    lines: [],
-    boxes: [],
-  },
-};
+// const players = {
+//   P1: {
+//     name: "player 1",
+//     points: 0,
+//     lines: [],
+//     boxes: [],
+//   },
+//   P2: {
+//     name: "player 2",
+//     points: 0,
+//     lines: [],
+//     boxes: [],
+//   },
+// };
 
 const createCols = (numOfCols, j) => {
   let colsUi = "";
@@ -296,6 +341,8 @@ const updateNames = () => {
   document.querySelector(".p1-name").innerHTML = players.P1.name;
   document.querySelector(".p2-name").innerHTML = players.P2.name;
   updateGameStatus(turn);
+
+  setLocalStorage();
 };
 
 const setShowError = (value) => {
@@ -325,8 +372,6 @@ settingsBtn.addEventListener("click", () => toggleShowSettingsModal(true));
 const resumeBtn = document.getElementById("resume-btn");
 resumeBtn.addEventListener("click", () => toggleShowSettingsModal(false));
 
-const p1RenameInput = document.getElementById("rename-p1");
-
 p1RenameInput.addEventListener("blur", (e) => {
   if (e.target.value !== players.P1.name && e.target.value.length > 2) {
     players.P1.name = e.target.value;
@@ -336,8 +381,6 @@ p1RenameInput.addEventListener("blur", (e) => {
     setShowError(true);
   }
 });
-
-const p2RenameInput = document.getElementById("rename-p2");
 
 p2RenameInput.addEventListener("blur", (e) => {
   if (e.target.value !== players.P2.name && e.target.value.length > 2) {
