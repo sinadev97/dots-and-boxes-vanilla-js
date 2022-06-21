@@ -259,6 +259,7 @@ const scorring = ({ turn, reset }) => {
   if (!reset) {
     turn === "P1" ? (players.P1.points += 15) : (players.P2.points += 15);
     updateScores();
+    setLocalStorage();
     if (players.P1.boxes.length + players.P2.boxes.length === boxesLength) {
       console.log("game finished");
       finishGame();
@@ -266,6 +267,7 @@ const scorring = ({ turn, reset }) => {
     return;
   }
   updateScores(reset);
+  setLocalStorage();
 };
 
 const updateScores = (reset = false) => {
