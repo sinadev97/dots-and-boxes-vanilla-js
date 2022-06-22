@@ -6,13 +6,13 @@ const inititalStates = {
   selectedBoxes: [],
   players: {
     P1: {
-      name: "player1",
+      name: "Sina",
       points: 0,
       lines: [],
       boxes: [],
     },
     P2: {
-      name: "player2",
+      name: "Player",
       points: 0,
       lines: [],
       boxes: [],
