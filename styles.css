@@ -27,6 +27,7 @@
 body{
     background-color: var(--bgColor);
     color: var(--textColor);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -39,7 +40,10 @@ body{
     width: fit-content;
     display: flex;
     flex-direction: column;
+}
 
+.grid {
+    display: grid;
 }
 
 .dot {
@@ -89,7 +93,6 @@ body{
 .game-status {
     text-align: center;
     margin-top: 50px;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 

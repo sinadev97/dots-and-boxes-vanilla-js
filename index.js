@@ -12,7 +12,7 @@ const inititalStates = {
       boxes: [],
     },
     P2: {
-      name: "Player",
+      name: "Player2",
       points: 0,
       lines: [],
       boxes: [],
