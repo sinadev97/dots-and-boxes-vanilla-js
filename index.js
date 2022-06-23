@@ -77,47 +77,68 @@ const useP2Points = () => {
   return document.getElementById("p2-points");
 };
 
-const createCols = (numOfCols, j) => {
-  let colsUi = "";
-  for (let i = 0; i <= numOfCols; i++) {
-    i < numOfCols
-      ? (colsUi += `<div class='line v-line' id="v-${j}-${i}"></div><div class="box" id="b-${j}-${i}"></div>`)
-      : (colsUi += `<div class='line v-line' id="v-${j}-${i}">
-    `);
-  }
-  return colsUi;
-};
-
 const createRows = (numOfRows, j) => {
   let rowsUi = "";
   for (let i = 0; i <= numOfRows; i++) {
     i < numOfRows
-      ? (rowsUi += `<div class="dot"></div>
-    <div class="line h-line" id="h-${j}-${i}"></div>`)
-      : (rowsUi += `<div class="dot"></div>
+      ? (rowsUi += `
+      <div class="container">
+          <div class="dot"></div>
+      </div>
+      <div class="container">
+          <div class="line h-line" id="h-${j}-${i}"></div>
+      </div>
+    `)
+      : (rowsUi += `
+      <div class="container">
+          <div class="dot"></div>
+      </div>
     `);
   }
+  console.log("create row");
   return rowsUi;
 };
 
+const createCols = (numOfCols, j) => {
+  let colsUi = "";
+  for (let i = 0; i <= numOfCols; i++) {
+    i < numOfCols
+      ? (colsUi += `
+      <div class="container">
+          <div class='line v-line' id="v-${j}-${i}"></div>
+      </div>
+      <div class="container">
+         <div class="box" id="b-${j}-${i}"></div>
+      </div>
+      `)
+      : (colsUi += `
+      <div class="container">
+        <div class='line v-line' id="v-${j}-${i}"></div>
+      </div>
+    `);
+  }
+  console.log("create col");
+  return colsUi;
+};
+
 const createGame = (rnc) => {
+  gameContainer.setAttribute("data-grid", `${rnc}`);
   for (let i = 0; i < rnc + 1; i++) {
-    const hContainer = document.createElement("div");
-    hContainer.classList.add("h-container");
+    let content = gameContainer.innerHTML;
+    const row = createRows(rnc, i);
+    const col = createCols(rnc, i);
 
-    hContainer.innerHTML = createRows(rnc, i);
-
-    gameContainer.appendChild(hContainer);
+    content += row;
 
     if (i < rnc) {
-      const vContainer = document.createElement("div");
-      vContainer.classList.add("v-container");
-
-      vContainer.innerHTML = createCols(rnc, i);
-
-      gameContainer.appendChild(vContainer);
+      content += col;
     }
+
+    // console.log("create game");
+
+    gameContainer.innerHTML = content;
   }
+
   updateGameStatus(turn);
   updateScores();
 
@@ -412,6 +433,7 @@ selectSides.addEventListener("change", (e) => {
   gameContainer.innerHTML = null;
   rnc = +e.target.value;
   states.rnc = +e.target.value;
+  gameContainer.setAttribute("data-grid", `${rnc}`);
   createGame(rnc);
   resetGame();
   setLocalStorage();
