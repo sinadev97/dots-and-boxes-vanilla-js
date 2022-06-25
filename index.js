@@ -36,7 +36,6 @@ const setLocalStorage = () => {
 document.querySelector(".p1-name").innerHTML = players.P1.name;
 document.querySelector(".p2-name").innerHTML = players.P2.name;
 
-const root = document.getElementById("root");
 const gameContainer = document.querySelector(".grid-template-game");
 const finishModal = document.getElementById("finish-game-modal");
 const selectSides = document.getElementById("select-sides");
@@ -44,6 +43,9 @@ const p1RenameInput = document.getElementById("rename-p1");
 const p2RenameInput = document.getElementById("rename-p2");
 const toggleDarkMode = document.getElementById("switch");
 const options = [...document.getElementsByTagName("option")];
+const settingsModalBackDrop = document.getElementById("settings-back-drop");
+const finishModalBackDrop = document.getElementById("finish-game-back-drop");
+const errorLog = document.getElementById("error");
 
 options.forEach((opt) => {
   +opt.value === rnc && (opt.selected = true);
@@ -95,7 +97,6 @@ const createRows = (numOfRows, j) => {
       </div>
     `);
   }
-  console.log("create row");
   return rowsUi;
 };
 
@@ -117,7 +118,6 @@ const createCols = (numOfCols, j) => {
       </div>
     `);
   }
-  console.log("create col");
   return colsUi;
 };
 
@@ -133,8 +133,6 @@ const createGame = (rnc) => {
     if (i < rnc) {
       content += col;
     }
-
-    // console.log("create game");
 
     gameContainer.innerHTML = content;
   }
@@ -220,8 +218,6 @@ const colorLine = (line) => {
   line.classList.add(bgClasses[turn]);
   players[turn].lines = [...players[turn].lines, line.id];
   setLocalStorage();
-
-  console.log(players[turn].lines);
 };
 
 const colorBox = (box) => {
@@ -267,9 +263,11 @@ const isBoxSolved = (box) => {
 const resetGame = () => {
   resetStates();
   const lines = useLines();
+  console.log(lines);
   lines.forEach((line) => {
     line.classList.remove(bgClasses.P1, bgClasses.P2);
-    line.classList.add(hoverClasses[turn]);
+    line.classList.remove(hoverClasses.P2);
+    line.classList.add(hoverClasses.P1);
   });
   const boxes = useBoxes();
   boxes.forEach((box) => {
@@ -323,17 +321,15 @@ const updateScores = (reset = false) => {
 };
 
 const toggleShowFinishModal = (value) => {
-  const finishModalBackDrop = document.getElementById("finish-game-back-drop");
   value
     ? finishModalBackDrop.classList.replace("hidden", "block")
     : finishModalBackDrop.classList.replace("block", "hidden");
 };
 
 const toggleShowSettingsModal = (value) => {
-  const settingModalBackDrop = document.getElementById("settings-back-drop");
   value
-    ? settingModalBackDrop.classList.replace("hidden", "block")
-    : settingModalBackDrop.classList.replace("block", "hidden");
+    ? settingsModalBackDrop.classList.replace("hidden", "block")
+    : settingsModalBackDrop.classList.replace("block", "hidden");
 };
 
 const finishGame = () => {
@@ -383,7 +379,6 @@ const updateNames = () => {
 };
 
 const setShowError = (value) => {
-  const errorLog = document.getElementById("error");
   if (value) errorLog.classList.replace("invisible", "visible");
   else errorLog.classList.replace("visible", "invisible");
 };
@@ -398,33 +393,47 @@ modalResetBtns.forEach((resetBtn) => {
   resetBtn.addEventListener("click", () => {
     finishModal.innerHTML = "";
     resetGame();
-    toggleShowFinishModal(false);
-    toggleShowSettingsModal(false);
+    !finishModalBackDrop.classList.contains("hidden") &&
+      toggleShowFinishModal(false);
+    !settingsModalBackDrop.classList.contains("hidden") &&
+      errorLog.classList.contains("invisible") &&
+      toggleShowSettingsModal(false);
   });
 });
 
 const settingsBtn = document.getElementById("settings-btn");
 settingsBtn.addEventListener("click", () => toggleShowSettingsModal(true));
 
-const resumeBtn = document.getElementById("resume-btn");
-resumeBtn.addEventListener("click", () => toggleShowSettingsModal(false));
+settingsModalBackDrop.addEventListener(
+  "click",
+  (e) =>
+    e.target.id === "settings-back-drop" &&
+    errorLog.classList.contains("invisible") &&
+    toggleShowSettingsModal(false)
+);
 
-p1RenameInput.addEventListener("blur", (e) => {
-  if (e.target.value !== players.P1.name && e.target.value.length > 2) {
+const settingsForm = document.getElementById("settings-form");
+settingsForm.addEventListener("submit", (e) => {
+  errorLog.classList.contains("invisible") && toggleShowSettingsModal(false);
+  e.preventDefault();
+});
+
+p1RenameInput.addEventListener("change", (e) => {
+  if (e.target.value.length > 2 && p2RenameInput.value.length > 2) {
     players.P1.name = e.target.value;
     updateNames();
     setShowError(false);
-  } else if (e.target.value.length < 3) {
+  } else {
     setShowError(true);
   }
 });
 
-p2RenameInput.addEventListener("blur", (e) => {
-  if (e.target.value !== players.P2.name && e.target.value.length > 2) {
+p2RenameInput.addEventListener("change", (e) => {
+  if (e.target.value.length > 2 && p1RenameInput.value.length > 2) {
     players.P2.name = e.target.value;
     updateNames();
     setShowError(false);
-  } else if (e.target.value.length < 3) {
+  } else {
     setShowError(true);
   }
 });

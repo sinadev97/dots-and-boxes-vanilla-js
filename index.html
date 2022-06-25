@@ -20,188 +20,28 @@
           }
         }
       </script>
-    <title>Dot & Boxes Game</title>
+    <title>Dots & Boxes Game</title>
 </head>
-<body>
-    <div id="root">
-        <div class="main max-w-[800px] mx-auto  min-h-screen flex flex-col items-center justify-center">
+    <body>
+        <div class="main w-full max-w-[800px] min-h-[calc(100vh-60px)] mx-auto px-2 flex flex-col items-center justify-center">
             <!-- scores  -->
-            <div class="w-full flex justify-between items-center">
+            <div class="w-full flex justify-between items-center text-lg sm:text-2xl">
                 <div class="w-full">
-                    <span class="p1-name text-2xl"></span> : <span class="text-2xl ml-2" id="p1-points"></span>
+                    <span class="p1-name "></span> : <span class=" ml-2" id="p1-points"></span>
                 </div>
                 <div class="min-w-[112px] w-28">
                     <img src="./images/trophy-removebg-preview.png" class="w-full">
                 </div>
                 <div class="w-full text-right">
-                    <span class="text-2xl mr-2" id="p2-points"></span> : <span class="p2-name text-2xl"></span>
+                    <span class=" mr-2" id="p2-points"></span> : <span class="p2-name "></span>
                 </div>
             </div>
             <!-- scores  -->
-            
-            <!-- game grid -->
-            <!-- <div class="container-fluid mt-10">
-                <div class="grid-template-game" data-grid="3"></div>
-            </div> -->
 
-
+            <!-- game grid  -->
             <div class="w-full flex justify-center mt-10">
-                <div class="grid-template-game">
-                    <!-- <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-
-
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="box"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line v-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div>
-                    <div class="container">
-                        <div class="line h-line"></div>
-                    </div>
-                    <div class="container">
-                        <div class="dot"></div>
-                    </div> -->
-                    
-                </div>
+                <div class="grid-template-game"></div>
             </div>
-            
-            
             <!-- game grid  -->
 
             <!-- game status  -->
@@ -219,10 +59,10 @@
             <!-- game tools  -->
 
             <!-- stats modal  -->
-            <div class="absolute flex justify-center items-center w-full h-screen backdrop-blur-sm bg-white/10 hidden" id="finish-game-back-drop">
-                <div class="card rounded-xl p-10 w-full max-w-[650px] flex flex-col" >
+            <div class="absolute flex justify-center items-center w-full min-h-[calc(100vh-60px)] backdrop-blur-sm bg-white/10 hidden" id="finish-game-back-drop">
+                <div class="card rounded-xl p-5 z-10 w-[95%] max-w-[650px] flex flex-col mx-2" >
                     <div id="finish-game-modal"></div>
-                    <button class="bg-primary mx-auto px-20 py-2 mt-10 rounded-xl" id="modal-reset-btn">
+                    <button class="bg-primary mx-auto w-full max-w-[300px] py-2 mt-10 rounded-xl" id="modal-reset-btn">
                         <span class="text-xl mr-3">Play again</span>
                          <i class="fas fa-sync-alt text-xl"></i>
                     </button>
@@ -231,8 +71,8 @@
             <!-- stats modal -->
             
             <!-- setting modal  -->
-            <div class="absolute flex justify-center items-center w-full h-screen hidden" id="settings-back-drop">
-                <div class="card rounded-xl p-10 w-full max-w-[450px] flex flex-col" >
+            <div class="absolute flex justify-center items-center w-full min-h-[calc(100vh-60px)] hidden" id="settings-back-drop">
+                <div class="card rounded-xl p-5 z-10 w-[95%] max-w-[450px] shadow-2xl shadow-current flex flex-col" >
                     <div class="text-xl  text-right flex justify-between">
                         <div>Settings</div>
                         
@@ -246,50 +86,51 @@
                         </div>
                     </div>
     
-                    <div class="mt-8">
+                    <form id="settings-form">
+                        <div class="mt-8">
+                            <div class="flex">
+                                <div class="min-w-fit">Player 1 :</div>
+                                <input id="rename-p1" type="text" value="" class="grow ml-5 w-0 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
+                            </div>
+                            <div class="flex mt-3">
+                                <div class="min-w-fit">Player 2 :</div>
+                                <input id="rename-p2" type="text" value="" class="grow ml-5 w-0 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
+                            </div>
+    
+                            <div id="error" class="text-rose-500 text-sm italic mt-3 invisible">* Names must be longer than 2 letters</div>
+                        </div>
+        
+                        <div class="flex mt-6">
+                            <div>Sides :</div>
+                            <select id="select-sides" class="ml-5 select-size-text bg-transparent outline-none cursor-pointer">
+                                <option value="2">2 X 2</option>
+                                <option value="3">3 X 3</option>
+                                <option value="4">4 X 4</option>
+                                <option value="5">5 X 5</option>
+                            </select>
+                        </div>
+        
                         <div class="flex">
-                            <div>Player 1 :</div>
-                            <input id="rename-p1" type="text" value="" class="ml-5 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
+                            <div class="w-1/2 flex justify-center items-center">
+                                <button type="submit" class="bg-green w-full min-w-max mr-2 py-2 mt-10 rounded-xl" id="resume-btn">
+                                    <span class="text-lg mr-3">Resume</span>
+                                     <i class="fas fa-play text-xl"></i>
+                                </button>
+                            </div>
+        
+                            <div class="w-1/2 flex justify-center items-center">
+                                <button class="bg-primary w-full min-w-max ml-2 py-2 mt-10 rounded-xl" id="modal-reset-btn">
+                                    <span class="text-lg mr-3">Restart</span>
+                                     <i class="fas fa-sync-alt text-xl"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="flex mt-3">
-                            <div>Player 2 :</div>
-                            <input id="rename-p2" type="text" value="" class="ml-5 outline-none relative bottom-0.5 px-3 bg-transparent border-b-2 border-white italic text-primary">
-                        </div>
-
-                        <div id="error" class="text-rose-500 text-sm italic mt-3 invisible">* Names must be longer than 3 letters</div>
-                    </div>
-    
-                    <div class="flex mt-6">
-                        <div>Sides :</div>
-                        <select id="select-sides" class="ml-5 select-size-text bg-transparent outline-none cursor-pointer">
-                            <option value="2">2 X 2</option>
-                            <option value="3">3 X 3</option>
-                            <option value="4">4 X 4</option>
-                            <option value="5">5 X 5</option>
-                        </select>
-                    </div>
-    
-                    <div class="flex">
-                        <div class="w-1/2 flex justify-center items-center">
-                            <button class="bg-green  w-full mx-3 px-5 py-2 mt-10 rounded-xl" id="resume-btn">
-                                <span class="text-lg mr-3">Resume</span>
-                                 <i class="fas fa-play text-xl"></i>
-                            </button>
-                        </div>
-    
-                        <div class="w-1/2 flex justify-center items-center">
-                            <button class="bg-primary w-full mx-3 px-5 py-2 mt-10 rounded-xl" id="modal-reset-btn">
-                                <span class="text-lg mr-3">Restart</span>
-                                 <i class="fas fa-sync-alt text-xl"></i>
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <!-- setting modal  -->
         </div>
-    </div>
 
-    <script src="./index.js"></script>
-</body>
+        <script src="./index.js"></script>
+    </body>
 </html>
